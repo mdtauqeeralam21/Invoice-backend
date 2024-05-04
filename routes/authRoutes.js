@@ -11,19 +11,19 @@ import {
 
 import authenticateUser from "../middleware/authenticate.js";
 
-import rateLimiter from "express-rate-limit";
+//import rateLimiter from "express-rate-limit";
 
-const apiLimiter = rateLimiter({
-  windowMs: 15 * 60 * 1000,
-  max: 10,
-  message:
-    "Too many accounts created from this IP, please try again after 15 minutes",
-  standardHeaders: true,
-  legacyHeaders: false,
-});
+// const apiLimiter = rateLimiter({
+//   windowMs: 15 * 60 * 1000,
+//   max: 10,
+//   message:
+//     "Too many accounts created from this IP, please try again after 15 minutes",
+//   standardHeaders: true,
+//   legacyHeaders: false,
+// });
 
-router.route("/register").post(apiLimiter, register);
-router.route("/login").post(apiLimiter, login);
+router.route("/register").post(register);
+router.route("/login").post(login);
 router.get("/logout", logout);
 
 router.route("/updateUser").patch(authenticateUser, updateUser);
