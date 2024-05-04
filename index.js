@@ -54,7 +54,7 @@ app.use(cookieParser());
 
 app.use(helmet());
 app.use(mongoSanitize());
-app.set("trust proxy", true);
+//app.set("trust proxy", true);
 
 app.get("/api/v1", (req, res) => {
   res.send("Hello World");
