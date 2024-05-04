@@ -43,20 +43,26 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(express.static(path.resolve(__dirname, "./client/build")));
 
-app.use(cors({ origin: "https://invoice-frontend-weld.vercel.app", credentials: true }));
+app.use(
+  cors({
+    origin: "https://invoice-frontend-weld.vercel.app",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
 app.use(helmet());
 app.use(mongoSanitize());
+app.set("trust proxy", true);
 
 app.get("/api/v1", (req, res) => {
-  res.send("Hello");
+  res.send("Hello World");
 });
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/invoices", authenticateUser, invoiceRouter);
-app.get("/api/v1/admin",authenticateUser,getAllInvoicesForAdmin);
+app.get("/api/v1/admin", authenticateUser, getAllInvoicesForAdmin);
 
 app.post("/api/v1/forgotpassword", forgotPassword);
 app.post("/api/v1/resetpassword", resetPassword);
