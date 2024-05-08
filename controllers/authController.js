@@ -30,10 +30,10 @@ const register = async (req, res) => {
     secure: process.env.NODE_ENV === 'production',
   });
   res.status(StatusCodes.CREATED).json({
-    user: {
+    
       email: user.email,
       name: user.name
-    }
+    
   });
 };
 
